@@ -22,7 +22,8 @@ class FleioPaymentIntent(models.Model):
     razorpay_id = models.CharField(max_length=1024, null=False, blank=False)
     client_secret = models.CharField(max_length=1024, null=False, blank=False)
     has_setup_future_usage = models.BooleanField(default=False)
-
+    class Meta:
+        db_table = "razorpay_gateway"
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         self.client_secret = FleioEncryption.encrypt(self.client_secret)
